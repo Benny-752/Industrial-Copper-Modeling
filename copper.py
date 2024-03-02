@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 
 st.write("""
 <div style='text-align:center'>
-    <h1 style='color:#009999;'>Industrial Copper Modeling Application</h1>
+    <h1 style='color:#10de47;'>Industrial Copper Modeling Application</h1>
 </div>
 """, unsafe_allow_html=True)
 
@@ -42,7 +42,7 @@ with tab1:
                 application = st.selectbox("Application", sorted(application_options),key=4)
                 product_ref = st.selectbox("Product Reference", product,key=5)
             with col3:               
-                st.write( f'<h5 style="color:rgb(0, 153, 153,0.4);">NOTE: Min & Max given for reference, you can enter any value</h5>', unsafe_allow_html=True )
+                st.write( f'<h5 style="color:#10de47;">Enter Values</h5>', unsafe_allow_html=True )
                 quantity_tons = st.text_input("Enter Quantity Tons (Min:611728 & Max:1722207579)")
                 thickness = st.text_input("Enter thickness (Min:0.18 & Max:400)")
                 width = st.text_input("Enter width (Min:1, Max:2990)")
@@ -51,7 +51,7 @@ with tab1:
                 st.markdown("""
                     <style>
                     div.stButton > button:first-child {
-                        background-color: #009999;
+                        background-color: #10de47;
                         color: white;
                         width: 100%;
                     }
@@ -76,15 +76,15 @@ with tab1:
         if submit_button and flag==0:
             
             import pickle
-            with open("C:/Users/user/Downloads/model.pkl", 'rb') as file:
+            with open(r"C:/Users/user/Downloads/model.pkl", 'rb') as file:
                 loaded_model = pickle.load(file)
-            with open(r'C:\Users\user\Downloads\scaler.pkl', 'rb') as f:
+            with open(r'C:/Users/user/Downloads/scaler.pkl', 'rb') as f:
                 scaler_loaded = pickle.load(f)
 
-            with open(r"C:\Users\user\Downloads\t.pkl", 'rb') as f:
+            with open(r"C:/Users/user/Downloads/t.pkl", 'rb') as f:
                 t_loaded = pickle.load(f)
 
-            with open(r"C:\Users\user\Downloads\s.pkl", 'rb') as f:
+            with open(r"C:/Users/user/Downloads/s.pkl", 'rb') as f:
                 s_loaded = pickle.load(f)
 
             new_sample= np.array([[np.log(float(quantity_tons)),application,np.log(float(thickness)),float(width),country,float(customer),int(product_ref),item_type,status]])
@@ -131,13 +131,13 @@ with tab2:
              
         if csubmit_button and cflag==0:
             import pickle
-            with open(r"C:\Users\user\Downloads\cmodel.pkl", 'rb') as file:
+            with open(r"C:/Users/user/Downloads/cmodel.pkl", 'rb') as file:
                 cloaded_model = pickle.load(file)
 
-            with open(r'C:\Users\user\Downloads\cscaler.pkl', 'rb') as f:
+            with open(r'C:/Users/user/Downloads/cscaler.pkl', 'rb') as f:
                 cscaler_loaded = pickle.load(f)
 
-            with open(r"C:\Users\user\Downloads\ct.pkl", 'rb') as f:
+            with open(r"C:/Users/user/Downloads/ct.pkl", 'rb') as f:
                 ct_loaded = pickle.load(f)
 
             # Predict the status for a new sample
@@ -151,5 +151,4 @@ with tab2:
                 st.write('## :green[The Status is Won] ')
             else:
                 st.write('## :red[The status is Lost] ')
-                
-st.write( f'<h6 style="color:rgb(0, 153, 153,0.35);">App Created by TulasiNND</h6>', unsafe_allow_html=True )  
+
